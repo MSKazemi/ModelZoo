@@ -41,6 +41,17 @@ metadata = load_model_metadata("uc_power_model", version="latest")
 model_path = get_model_path("uc_power_model", version=2)
 ```
 
+## Validation & CI
+
+Run schema validation locally:
+
+```bash
+python validate.py          # metadata, feature_schema, index
+python validate.py --strict # also load model.pkl with joblib
+```
+
+**GitHub Actions** (`.github/workflows/validate-modelzoo.yml`) runs on every push/PR: validates metadata schema, feature_schema.json, index.yaml consistency, and optionally model load.
+
 ## Populated by MLOps Pipeline
 
 The `push_to_modelzoo` Prefect task (in `flow_uc_power_training`) creates new version directories after each successful training run. Only the pipeline is allowed to write to the modelzoo.
