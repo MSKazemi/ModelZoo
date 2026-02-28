@@ -51,11 +51,12 @@ ModelZoo content lives in three places. This doc clarifies how they relate.
    - Commits, pushes to GitHub
    - Optionally pushes same commit to GitLab (warns if auth fails; pipeline still succeeds)
 
-## GitLab Push: Permission Denied
+## GitLab Push
 
-If you see `Permission denied (publickey)` when pushing to GitLab:
+**Force push:** The pipeline uses `git push --force` to GitLab so it stays in sync even when GitLab was initialized with a README or has a different history. GitLab is a mirror of GitHub ModelZoo.
 
-1. **Add SSH key to GitLab**: GitLab → Settings → SSH Keys (add the same key you use for GitHub, or a GitLab-specific one)
-2. **Or use HTTPS**: `EXAMLOPS_MODELZOO_REPO_URL_GITLAB=https://gitlab.com/ExaMLOps/modelzoo.git` (requires token in URL or credential helper)
+**Permission denied (publickey):**
+1. Add your SSH key to GitLab: Settings → SSH Keys
+2. Or use HTTPS: `EXAMLOPS_MODELZOO_REPO_URL_GITLAB=https://oauth2:TOKEN@gitlab.com/ExaMLOps/modelzoo.git`
 
-The pipeline now treats GitLab push failure as **non-fatal**: GitHub push succeeds, and you get a warning to fix GitLab auth.
+**Non-fatal:** If GitLab push fails, the pipeline still succeeds; you get a warning to fix auth or repo access.
