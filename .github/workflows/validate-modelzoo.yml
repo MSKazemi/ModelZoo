@@ -26,6 +26,6 @@ jobs:
         working-directory: .
 
       - name: Validate (strict, load models)
-        run: pip install joblib && python validate.py --strict
+        run: pip install joblib scikit-learn && python validate.py --strict
         working-directory: .
         continue-on-error: true  # strict may fail on large/binary quirks; schema pass is primary

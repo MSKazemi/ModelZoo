@@ -56,6 +56,10 @@ versions:
   status: Production
   created_at: '2026-02-28T12:02:14Z'
   mlflow_run_id: 0226e6f41fef44319ee8a44b34b923b8
+- version: 21
+  status: Production
+  created_at: '2026-02-28T12:18:56Z'
+  mlflow_run_id: ab7538f287d6448893db0c3b460f539f
 latest:
-  version: 20
+  version: 21
   status: Production

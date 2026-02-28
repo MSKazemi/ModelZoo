@@ -147,14 +147,11 @@ def validate_index(path: Path, model_root: Path) -> list[str]:
     return errors
 
 
-def validate_model_load(path: Path) -> list[str]:
+def validate_model_load(path: Path, joblib_module) -> list[str]:
     """Optionally validate model.pkl loads with joblib."""
     errors = []
     try:
-        import joblib
-        joblib.load(path)
-    except ImportError:
-        errors.append("joblib not installed, cannot validate model load")
+        joblib_module.load(path)
     except Exception as e:
         errors.append(f"{path}: failed to load model: {e}")
     return errors
@@ -204,7 +201,12 @@ def main() -> int:
             if not model_path.exists():
                 all_errors.append(f"{v_dir}: missing model.pkl")
             elif args.strict:
-                all_errors.extend(validate_model_load(model_path))
+                try:
+                    import joblib
+                except ImportError:
+                    all_errors.append("joblib not installed; pip install joblib for --strict")
+                    break  # no point retrying for each model
+                all_errors.extend(validate_model_load(model_path, joblib))
 
     if all_errors:
         for e in all_errors:
