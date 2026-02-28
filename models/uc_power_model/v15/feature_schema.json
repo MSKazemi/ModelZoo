@@ -1,0 +1,12 @@
+{
+  "features": [
+    "num_nodes",
+    "num_cores",
+    "walltime",
+    "submitted_hour",
+    "queue_gpu",
+    "queue_large",
+    "queue_normal"
+  ],
+  "target": "power_mean"
+}
