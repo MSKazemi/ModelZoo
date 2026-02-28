@@ -1,0 +1,17 @@
+# GitLab CI – validate modelzoo structure on every push
+# Mirrors .github/workflows/validate-modelzoo.yml
+
+validate:
+  image: python:3.10
+  before_script:
+    - pip install pyyaml
+  script:
+    - python validate.py
+
+validate-strict:
+  image: python:3.10
+  before_script:
+    - pip install pyyaml joblib scikit-learn
+  script:
+    - python validate.py --strict
+  allow_failure: true  # schema pass is primary; strict may fail on binary quirks

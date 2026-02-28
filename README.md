@@ -50,7 +50,9 @@ python validate.py          # metadata, feature_schema, index
 python validate.py --strict # also load model.pkl with joblib
 ```
 
-**GitHub Actions** (`.github/workflows/validate-modelzoo.yml`) runs on every push/PR: validates metadata schema, feature_schema.json, index.yaml consistency, and optionally model load.
+**CI:** Validation runs on both GitHub Actions and GitLab CI:
+- **GitHub** (`.github/workflows/validate-modelzoo.yml`): metadata schema, feature_schema.json, index.yaml, optionally model load
+- **GitLab** (`.gitlab-ci.yml`): same validation
 
 ## Populated by MLOps Pipeline
 
