@@ -2,6 +2,8 @@
 
 Git-backed model catalog with **MLflow Model Registry version** as the canonical version ID.
 
+**Architecture:** See [ARCHITECTURE.md](ARCHITECTURE.md) for data flow (ExaMLOps → GitHub ModelZoo → GitLab ModelZoo).
+
 ## Layout
 
 ```
