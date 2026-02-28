@@ -1,0 +1,22 @@
+model_name: uc_power_model
+version: 26
+mlflow:
+  registered_model_name: uc_power_model
+  model_version: 26
+  run_id: 4671324f1ad54194a34393fcb0f367fa
+git:
+  commit_hash: efe44056c9ae38d6c9cd81038aa18b029e50f892
+  created_at: '2026-02-28T18:18:45Z'
+status: production
+metrics:
+  rmse: 10.499319604867347
+  mape: 13.421653890733353
+  mse: 110.23571216515182
+features:
+- num_nodes
+- num_cores
+- walltime
+- submitted_hour
+- queue_gpu
+- queue_large
+- queue_normal
