@@ -53,7 +53,7 @@ ModelZoo content lives in three places. This doc clarifies how they relate.
 
 ## GitLab Push
 
-**Force push:** The pipeline uses `git push --force` to GitLab so it stays in sync even when GitLab was initialized with a README or has a different history. GitLab is a mirror of GitHub ModelZoo.
+**No force push:** GitLab often protects `main`, which blocks force push. The pipeline instead fetches from GitLab, merges (with `--allow-unrelated-histories` if needed), then pushes. This keeps GitLab in sync without requiring branch protection changes.
 
 **Permission denied (publickey):**
 1. Add your SSH key to GitLab: Settings → SSH Keys
