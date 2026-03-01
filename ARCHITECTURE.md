@@ -44,12 +44,22 @@ ModelZoo content lives in three places. This doc clarifies how they relate.
 ## Pipeline Flow
 
 1. **Training** → model saved to mock_hpc_jobs or Slurm output
-2. **push_to_modelzoo** → writes to `ExaMLOps/modelzoo/models/<model>/vN/`
+2. **push_to_modelzoo** (in `flow_uc_power_training.py`) → writes to `ExaMLOps/modelzoo/models/<model>/vN/`
 3. **commit_and_push_modelzoo** (if push enabled):
+   - Calls `modelzoo.push_to_remotes.push_modelzoo_to_remotes()`
    - Clones GitHub ModelZoo into `.modelzoo_push/`
    - Syncs `modelzoo/*` into clone
    - Commits, pushes to GitHub
    - Optionally pushes same commit to GitLab (warns if auth fails; pipeline still succeeds)
+
+## Code Layout (Best Practice)
+
+| Module | Responsibility |
+|--------|----------------|
+| `pipelines/.../flow_uc_power_training.py` | Orchestration only: training tasks, `push_to_modelzoo`, thin `commit_and_push_modelzoo` |
+| `modelzoo/push_to_remotes.py` | **Single place for all git logic**: clone, sync, commit, push (GitHub + GitLab) |
+| `modelzoo/validate.py` | Schema validation; CI runs this on pushes |
+| `modelzoo/modelzoo_client.py` | Loading models and metadata for serving |
 
 ## GitLab Push
 

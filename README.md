@@ -60,4 +60,9 @@ python validate.py --strict # also load model.pkl with joblib
 
 The `push_to_modelzoo` Prefect task (in `flow_uc_power_training`) creates new version directories after each successful training run. Only the pipeline is allowed to write to the modelzoo.
 
-**Separate repo:** The pipeline can push the modelzoo to a dedicated GitHub repo (Option B). Set `EXAMLOPS_MODELZOO_REPO_URL=git@github.com:user/ModelZoo.git` and `EXAMLOPS_PUSH_MODELZOO_TO_GIT=1`, then run `make pipeline-push`. See [UC Power Prediction docs](../docs/40-pipelines/uc-power-prediction.md).
+**Separate repos:** The pipeline can push the modelzoo to dedicated GitHub and/or GitLab repos (Option B):
+
+- **GitHub** (required for push): `EXAMLOPS_MODELZOO_REPO_URL=git@github.com:user/ModelZoo.git`
+- **GitLab** (optional mirror): `EXAMLOPS_MODELZOO_REPO_URL_GITLAB=git@gitlab.com:group/modelzoo.git`
+
+Set `EXAMLOPS_PUSH_MODELZOO_TO_GIT=1` and run `make pipeline-push`. See [UC Power Prediction docs](../docs/40-pipelines/uc-power-prediction.md) and [ARCHITECTURE.md](ARCHITECTURE.md).
